@@ -31,8 +31,7 @@ Do this step before you RUN the application.
 ### Import SQL to OLAP
 
 1. Open MySQL on your Cloud Server. 
-2. Import Dimensional Table SQL. [olap.sql](DW_ETL_Example/Resources/SQL/olap.sql)
-3. Import Fact Table SQL. [fact-table.sql](DW_ETL_Example/Resources/SQL/fact-table.sql)
+2. Import SQL for the DB. [olap.sql](DW_ETL_Example/Resources/SQL/olap.sql)
 4. Import SQL for Analysis the Metrics. We will use `VIEW` and `STORED PROCEDURE`. [transform-analysis.sql](DW_ETL_Example/Resources/SQL/transform-analysis.sql)
 5. Check if the database already created and data already imported.
    - Products = 20 data
