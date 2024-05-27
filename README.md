@@ -1,6 +1,6 @@
 # Data Warehousing Application
 
-This project aims to develop a data warehousing application using Visual Studio 2019 and C#.NET. to extract, transform, and load (ETL) data from operational systems into a star schema data warehouse built on MySQL. The application will also perform basic analysis on the data to provide insights into customer behavior and sales trends.
+This project aims to develop a data warehousing application using Visual Studio 2019 and C#.NET. to extract, transform, and load (ETL) data from operational systems into a star schema data warehouse built on MySQL. The application will also perform basic analysis on the data to provide insights into customer behavior and sales trends. This application is designed to provide students with an overview of the ETL (Extract, Transform, Load) process in data warehousing.
 
 ![dw-architecture](dw-architecture.png)
 
@@ -79,7 +79,6 @@ Analysis is use CEO for analysis the business. It only created for Metics 1 and 
 
 ## Acknowledgments
 
-  - This application is created for give student who take Data Warehousing course, understand the ETL process.
   - Course: ISB02303401 - Data Warehousing
   - Information System for Business (ISB) Dept., Faculty of Information Technology, Universitas Ciputra Surabaya
     
