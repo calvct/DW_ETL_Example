@@ -75,10 +75,11 @@ Analysis is use CEO for analysis the business. It only created for Metics 1 and 
 ## Authors
 
   - **Indra Maryati** -
-    [Github](https://github.com/indramaryati)
+    [Email](mailto:indra.maryati@ciputra.ac.id)
 
 ## Acknowledgments
 
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
+  - This application is created for give student who take Data Warehousing course, understand the ETL process.
+  - Course: ISB02303401 - Data Warehousing
+  - Information System for Business (ISB) Dept., Faculty of Information Technology, Universitas Ciputra Surabaya
+    
