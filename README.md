@@ -60,7 +60,7 @@ Transform process occur in the Data Warehouse. It will create the Fact Table.
 4. The transform process is finished.
 
 ### Analysis
-Analysis is use CEO for analysis the business. It only created for Metics 1 and 4.
+Analysis is use CEO for analysis the business. It only created for Metics 3 and 4.
 1. Click on `Analysis` button, then you will redirect to FormAnalysis form.
 2. Connect OLAP host for transforming the data. Enter the host name, DB name, DB username and password. Click on `CONNECT` button to connect to the host.
 3. After status OLAP is connected, choose the metrics that you want. For viewing the report, click on `Get Report` button.
