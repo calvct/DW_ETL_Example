@@ -77,13 +77,13 @@ namespace DW_ETL_Example
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(1225, 139);
+            this.textBox1.Size = new System.Drawing.Size(1211, 139);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // btnAnalysis
             // 
-            this.btnAnalysis.Location = new System.Drawing.Point(1097, 182);
+            this.btnAnalysis.Location = new System.Drawing.Point(1083, 182);
             this.btnAnalysis.Name = "btnAnalysis";
             this.btnAnalysis.Size = new System.Drawing.Size(150, 74);
             this.btnAnalysis.TabIndex = 6;
@@ -96,7 +96,7 @@ namespace DW_ETL_Example
             this.pictureBox2.Image = global::DW_ETL_Example.Properties.Resources.OLAP_PDM;
             this.pictureBox2.Location = new System.Drawing.Point(479, 262);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(768, 361);
+            this.pictureBox2.Size = new System.Drawing.Size(754, 361);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
@@ -113,7 +113,7 @@ namespace DW_ETL_Example
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 703);
+            this.ClientSize = new System.Drawing.Size(1253, 635);
             this.Controls.Add(this.btnAnalysis);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
