@@ -3,7 +3,7 @@
 This project aims to develop a data warehousing application using Visual Studio 2019 and C#.NET. to extract, transform, and load (ETL) data from operational systems into a star schema data warehouse built on MySQL. The application will also perform basic analysis on the data to provide insights into customer behavior and sales trends.
 
 **This is the Data Warehouse Architecture**
-[(dw-architecture.png)]
+!(dw-architecture.png)
 
 ## Preparation
 
