@@ -2,11 +2,9 @@
 
 This project aims to develop a data warehousing application using Visual Studio 2019 and C#.NET. to extract, transform, and load (ETL) data from operational systems into a star schema data warehouse built on MySQL. The application will also perform basic analysis on the data to provide insights into customer behavior and sales trends.
 
-## Getting Started
+## Preparation
 
-These instructions will give you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on deploying the project on a live system.
+Do this step before you RUN the application.
 
 ### Import SQL to OLTP
 
@@ -38,10 +36,9 @@ for notes on deploying the project on a live system.
 
 ## Built With
 
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
+  - Visual Studio 2019
+  - MySQL Server
+  - MySQL Workbench
 
 ## Authors
 
