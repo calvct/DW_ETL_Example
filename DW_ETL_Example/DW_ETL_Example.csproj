@@ -128,7 +128,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\SQL\fact-table.sql" />
+    <Content Include="Resources\SQL\olap.sql" />
+    <Content Include="Resources\SQL\oltp-1.sql" />
+    <Content Include="Resources\SQL\oltp-2.sql" />
+    <Content Include="Resources\SQL\oltp-3.sql" />
+    <Content Include="Resources\SQL\transform-analysis.sql" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\OLAP-PDM.png" />
   </ItemGroup>
