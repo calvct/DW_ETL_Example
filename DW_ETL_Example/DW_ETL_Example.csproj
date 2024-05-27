@@ -129,7 +129,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\SQL\fact-table.sql" />
     <Content Include="Resources\SQL\olap.sql" />
     <Content Include="Resources\SQL\oltp-1.sql" />
     <Content Include="Resources\SQL\oltp-2.sql" />

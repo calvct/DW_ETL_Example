@@ -26,7 +26,7 @@ namespace DW_ETL_Example
 
         private void FormAnalysis_Load(object sender, EventArgs e)
         {
-            cbReport1.SelectedIndex = 4;
+            cbReport1.SelectedIndex = 3;
             cbReport2.SelectedIndex = 0;
             disconnectedOLAPComponent();
         }
@@ -99,7 +99,7 @@ namespace DW_ETL_Example
         {
             try
             {
-                string cmdText = "CALL pSalesFilter('" + cbReport1.SelectedIndex + "','" + tbStart1.Text + "','" + tbEnd1.Text + "');";
+                string cmdText = "CALL pCustPurchaseFilter('" + cbReport1.SelectedIndex + "','" + tbOrigin.Text + "');";
 
                 myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
                 dt = new DataTable();
@@ -108,24 +108,20 @@ namespace DW_ETL_Example
                 dgvResult.Refresh();
 
                 chart1.DataSource = dt;
+                chart1.Series[0].Name = "Purchase Frequency";
                 switch (cbReport1.SelectedIndex)
                 {
                     case 0:
-                        chart1.Series[0].XValueMember = "SalesDate";
-                        chart1.Series[0].YValueMembers = "TotalSales";
-                        chart1.Series[0].
+                        chart1.Series[0].XValueMember = "CustomerName";
+                        chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
                     case 1:
-                        chart1.Series[0].XValueMember = "YearWeek";
-                        chart1.Series[0].YValueMembers = "TotalSales";
+                        chart1.Series[0].XValueMember = "CustomerName";
+                        chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
                     case 2:
-                        chart1.Series[0].XValueMember = "MonthNo";
-                        chart1.Series[0].YValueMembers = "TotalSales";
-                        break;
-                    case 3:
-                        chart1.Series[0].XValueMember = "SalesDate";
-                        chart1.Series[0].YValueMembers = "TotalSales";
+                        chart1.Series[0].XValueMember = "CustomerName";
+                        chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
                 }
                 chart1.DataBind();
@@ -147,6 +143,12 @@ namespace DW_ETL_Example
                 myAdapter.Fill(dt);
                 dgvResult.DataSource = dt;
                 dgvResult.Refresh();
+
+                chart1.DataSource = dt;
+                chart1.Series[0].Name = "Total Sold";
+                chart1.Series[0].XValueMember = "ProductName";
+                chart1.Series[0].YValueMembers = "TotalSold";
+                chart1.DataBind();
             }
             catch (Exception ex)
             {

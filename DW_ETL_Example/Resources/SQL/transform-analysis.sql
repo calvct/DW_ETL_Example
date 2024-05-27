@@ -7,50 +7,47 @@ Key Metrics:
 5. Best-City for Selling Performances: Provides information on which City (OLTP) sold the highest amount, helping CEO to promote city's manager.
 */
 
-/* Ini untuk Key Metrics 1. 
-	Pertama kita buat dulu VIEW untuk mendapatkan semua sales yg pernah terjadi.
+/* Ini untuk Key Metrics 3. 
+	Pertama kita buat dulu VIEW untuk mendapatkan semua pembelanjaan customer yg pernah terjadi.
 	Setelah itu kita buat PROCEDURE untuk membantu kita melakukan QUERY filtering di Front-End
 */ 
 
 -- kita sudah membuat FactTable bernama SalesFact
 SELECT * FROM SalesFact;
 
-DROP VIEW IF EXISTS vSales;
-CREATE VIEW vSales AS
-SELECT o.OrderDate as SalesDate, sum(o.TotalAmount) as TotalSales
-FROM Orders o
-GROUP BY o.OrderDate;
+DROP VIEW IF EXISTS vCustPurchase;
+CREATE VIEW vCustPurchase AS
+SELECT sf.CustomerID, c.CustomerName, count(sf.CustomerID) as PurchaseFreq, sf.OrderOrigin
+FROM SalesFact sf
+LEFT JOIN Customers c ON sf.CustomerID = c.CustomerID
+GROUP BY sf.CustomerID
+ORDER BY PurchaseFreq DESC;
 
-SELECT * FROM vSales;
+SELECT * FROM vCustPurchase;
 
-DROP PROCEDURE IF EXISTS pSalesFilter;
+DROP PROCEDURE IF EXISTS pCustPurchaseFilter;
 DELIMITER $$
-CREATE PROCEDURE pSalesFilter(IN parMode char(1), IN parStart DATE, IN parEnd DATE)
+CREATE PROCEDURE pCustPurchaseFilter(IN parMode char(1), IN parOrigin varchar(255))
 BEGIN
   IF parMode = '0' THEN
-		-- Daily
-    SELECT DATE_FORMAT(SalesDate,'%d-%m-%y') as SalesDate, TotalSales
-    FROM vSales;
+		-- All Origin
+    SELECT CustomerName, PurchaseFreq
+    FROM vCustPurchase;
   ELSEIF parMode = '1' THEN
-		-- Weekly
-    SELECT YEARWEEK(SalesDate) YearWeek, sum(TotalSales) as TotalSales
-    FROM vSales
-    GROUP BY YEARWEEK(SalesDate);
-  ELSEIF parMode = '2' THEN
-		-- Monthly
-    SELECT MONTH(SalesDate) as MonthNo, sum(TotalSales) as TotalSales
-    FROM vSales
-    GROUP BY MONTH(SalesDate);
-	ELSEIF parMode = '3' THEN
-		-- SpesificRange (Date)
-    SELECT DATE_FORMAT(SalesDate,'%d-%m-%y') as SalesDate, TotalSales
-    FROM vSales
-    WHERE SalesDate >= parStart AND SalesDate <= parEnd;
+		-- Specific Origin, 2 dimension
+    SELECT CustomerName, PurchaseFreq
+    FROM vCustPurchase
+    WHERE OrderOrigin = parOrigin;
+	ELSEIF parMode = '2' THEN
+		-- ALL, 3 dimension
+    SELECT OrderOrigin, CustomerName, PurchaseFreq
+    FROM vCustPurchase
+    ORDER BY OrderOrigin, PurchaseFreq DESC;
   END IF;
 END$$
 DELIMITER ;
 
-CALL pSalesFilter('3','2024-01-15','2024-01-20');
+CALL pCustPurchaseFilter('2','Nganjuk');
 
 /* ---------------------------------------------------------------------------------------- */ 
 /* Ini untuk Key Metrics 4. 

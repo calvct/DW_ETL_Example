@@ -161,7 +161,7 @@ namespace DW_ETL_Example
                 string cmdText;
                 if (tb_name.ToLower() == "orders")
                 {
-                    cmdText = "SELECT OrderID, CustomerID, DATE_FORMAT(OrderDate,'%Y-%m-%d'), TotalAmount, is_warehouse FROM " + tb_name + " WHERE is_warehouse = 0 ORDER BY 1;";
+                    cmdText = "SELECT OrderID, CustomerID, DATE_FORMAT(OrderDate,'%Y-%m-%d') as OrderDate, TotalAmount, is_warehouse FROM " + tb_name + " WHERE is_warehouse = 0 ORDER BY 1;";
                     myAdapter = new MySqlDataAdapter(cmdText, myConnOLTP);
                     dt = new DataTable();
                     myAdapter.Fill(dt);

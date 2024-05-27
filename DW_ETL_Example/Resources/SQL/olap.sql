@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS Orders (
   OrderDate DATE NOT NULL,
   TotalAmount DECIMAL(10,2) NOT NULL,
   OrderOrigin VARCHAR(255),
+  is_fact BOOL DEFAULT 0,
   FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
@@ -49,6 +50,8 @@ CREATE TABLE IF NOT EXISTS OrderDetails (
 CREATE TABLE IF NOT EXISTS SalesFact (
   OrderDetailID INT PRIMARY KEY AUTO_INCREMENT,
   OrderID VARCHAR(10) NOT NULL,
+  OrderDate DATE,
+  OrderOrigin VARCHAR(255),
   CustomerID VARCHAR(6) NOT NULL,
   ProductID VARCHAR(6) NOT NULL,
   Quantity INT NOT NULL,

@@ -96,20 +96,23 @@ namespace DW_ETL_Example
             {
                 myCmdOLAP.Connection = myConnOLAP;
              
-                string cmdText = "SELECT od.OrderDetailID, od.OrderID, o.CustomerID, od.ProductID, od.Quantity, od.ProductPrice, od.Discount " +
+                string cmdText = "SELECT od.OrderDetailID, od.OrderID, DATE_FORMAT(o.OrderDate,'%Y-%m-%d') as OrderDate, o.OrderOrigin, o.CustomerID, od.ProductID, od.Quantity, od.ProductPrice, od.Discount " +
                                  "FROM OrderDetails od " +
                                  "LEFT JOIN Orders o ON o.OrderID = od.OrderID " +
-                                 "WHERE is_fact = 0 " +
+                                 "WHERE od.is_fact = 0 " +
                                  "ORDER BY 1;";
                 myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
                 dt = new DataTable();
                 myAdapter.Fill(dt);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO SalesFact (OrderDetailID, OrderID, CustomerID, ProductID, Quantity, ProductPrice, Discount) VALUES " + 
-                                            "(" + dt.Rows[i][0].ToString() + ",'" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "','" + dt.Rows[i][3].ToString() + "','" + dt.Rows[i][4].ToString() + "','" + dt.Rows[i][5].ToString() + "','" + dt.Rows[i][6].ToString() + "')";
+                    myCmdOLAP.CommandText = "INSERT INTO SalesFact (OrderDetailID, OrderID, OrderDate, OrderOrigin, CustomerID, ProductID, Quantity, ProductPrice, Discount) VALUES " +
+                                            "(" + dt.Rows[i][0].ToString() + ",'" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "','" + dt.Rows[i][3].ToString() + "','" + 
+                                            dt.Rows[i][4].ToString() + "','" + dt.Rows[i][5].ToString() + "','" + dt.Rows[i][6].ToString() + "','" + dt.Rows[i][7].ToString() + "','" + dt.Rows[i][8].ToString() + "')";
                     myCmdOLAP.ExecuteNonQuery();
                     myCmdOLAP.CommandText = "UPDATE OrderDetails SET is_fact = 1 WHERE OrderDetailID = '" + dt.Rows[i][0].ToString() + "'";
+                    myCmdOLAP.ExecuteNonQuery();
+                    myCmdOLAP.CommandText = "UPDATE Orders SET is_fact = 1 WHERE OrderID = '" + dt.Rows[i][1].ToString() + "'";
                     myCmdOLAP.ExecuteNonQuery();
                 }
 
@@ -126,7 +129,7 @@ namespace DW_ETL_Example
         {
             try
             {
-                myAdapter = new MySqlDataAdapter("SELECT * FROM SalesFact ORDER BY 1 DESC", myConnOLAP);
+                myAdapter = new MySqlDataAdapter("SELECT OrderDetailID, OrderID, DATE_FORMAT(OrderDate,'%Y-%m-%d') as OrderDate, OrderOrigin, CustomerID, ProductID, Quantity, ProductPrice, Discount FROM SalesFact ORDER BY 1 DESC", myConnOLAP);
                 dt = new DataTable();
                 myAdapter.Fill(dt);
                 dgvFactTable.DataSource = dt;
