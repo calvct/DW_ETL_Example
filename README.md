@@ -4,7 +4,7 @@ This project aims to develop a data warehousing application using Visual Studio 
 
 ![dw-architecture](dw-architecture.png)
 
-**Key Metrics for Analysis: **
+**Key Metrics for Analysis:**
 1. Daily/Weekly/Monthly Sales: Provides information on total sales over various time periods, helping CEOtrack sales performance over time.
 2. Average Order Value: Shows the average value of orders placed by customers, aiding in planning promotions or special offer packages.
 3. Customer Purchase Frequency: Provides insights into how often customers return to order, helping identify loyal customers and develop loyalty programs.
@@ -45,7 +45,7 @@ Do this step before you RUN the application.
 
 ## RUN the application
 
-## Extract and Load
+### Extract and Load
 1. Click on `Extract Load` button, then you will redirect to FormExtract form.
 2. Choose OLTP source, enter your DB username and password, then click on `CONNECT` button.
 3. Choose OLAP host for load the extracted data. Enter the host name, DB name, DB username and password. Click on `CONNECT` button to connect to the host.
@@ -53,14 +53,14 @@ Do this step before you RUN the application.
 5. Extracted data will appear in the data-grid-view, and to load the data to OLAP click on `LOAD TO DW / OLAP` button.
 6. The load process is finished.
 
-## Transform
+### Transform
 Transform process occur in the Data Warehouse. It will create the Fact Table.
 1. Click on `Transform` button, then you will redirect to FormTransform form.
 2. Connect OLAP host for transforming the data. Enter the host name, DB name, DB username and password. Click on `CONNECT` button to connect to the host.
 3. After status OLAP is connected, now you can start transform the data by click on `TRANSFORM` button.
 4. The transform process is finished.
 
-## Analysis
+### Analysis
 Analysis is use CEO for analysis the business. It only created for Metics 1 and 4.
 1. Click on `Analysis` button, then you will redirect to FormAnalysis form.
 2. Connect OLAP host for transforming the data. Enter the host name, DB name, DB username and password. Click on `CONNECT` button to connect to the host.
