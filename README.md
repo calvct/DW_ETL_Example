@@ -28,6 +28,8 @@ Do this step before you RUN the application.
    - Orders = 20 data
    - OrderDetails = 50 data
 
+![oltp-pdm](DW_ETL_Example/Resources/OLTP-PDM.png)
+
 ### Import SQL to OLAP
 
 1. Open MySQL on your Cloud Server. 
@@ -41,6 +43,8 @@ Do this step before you RUN the application.
    - SalesFact = *NO data*
    - View = `vSales`, `vSoldProducts`
    - Procedure = `pSalesFilter`, `pSoldProductsFilter`
+
+![olap-pdm](DW_ETL_Example/Resources/OLAP-PDM.png)
 
 ## RUN the application
 
