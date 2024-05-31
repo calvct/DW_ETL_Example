@@ -16,6 +16,7 @@ namespace DW_ETL_Example
     {
         MySqlConnection myConnOLTP;
         MySqlCommand myCmdOLTP = new MySqlCommand(); 
+
         MySqlConnection myConnOLAP;
         MySqlCommand myCmdOLAP = new MySqlCommand();
         MySqlDataAdapter myAdapter;
@@ -258,8 +259,11 @@ namespace DW_ETL_Example
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO Customers (CustomerID, CustomerName, Gender, Region, CustOrigin) VALUES ('" + dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "','" + dt.Rows[i][3].ToString() + "','" + originOLTP + "')";
+                    myCmdOLAP.CommandText = "INSERT INTO Customers (CustomerID, CustomerName, Gender, Region, CustOrigin) VALUES ('" + 
+                                            dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "','" + 
+                                            dt.Rows[i][3].ToString() + "','" + originOLTP + "')";
                     myCmdOLAP.ExecuteNonQuery();
+
                     myCmdOLTP.CommandText = "UPDATE Customers SET is_warehouse = 1 WHERE CustomerID='" + dt.Rows[i][0].ToString() + "';";
                     myCmdOLTP.ExecuteNonQuery();
                 }
@@ -279,8 +283,11 @@ namespace DW_ETL_Example
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount, OrderOrigin) VALUES ('" + dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + dt.Rows[i][3].ToString() + ",'" + originOLTP + "')";
+                    myCmdOLAP.CommandText = "INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount, OrderOrigin) VALUES ('" +
+                                            dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + 
+                                            dt.Rows[i][3].ToString() + ",'" + originOLTP + "')";
                     myCmdOLAP.ExecuteNonQuery();
+
                     myCmdOLTP.CommandText = "UPDATE Orders SET is_warehouse = 1 WHERE OrderID='" + dt.Rows[i][0].ToString() + "';";
                     myCmdOLTP.ExecuteNonQuery();
 
@@ -301,8 +308,11 @@ namespace DW_ETL_Example
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity, ProductPrice, Discount) VALUES ('" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + dt.Rows[i][3].ToString() + "," + dt.Rows[i][4].ToString() + "," + dt.Rows[i][5].ToString() + ")";
+                    myCmdOLAP.CommandText = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity, ProductPrice, Discount) VALUES ('" + 
+                                            dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + dt.Rows[i][3].ToString() + "," + 
+                                            dt.Rows[i][4].ToString() + "," + dt.Rows[i][5].ToString() + ")";
                     myCmdOLAP.ExecuteNonQuery();
+
                     myCmdOLTP.CommandText = "UPDATE OrderDetails SET is_warehouse = 1 WHERE OrderDetailID='" + dt.Rows[i][0].ToString() + "';";
                     myCmdOLTP.ExecuteNonQuery();
                 }

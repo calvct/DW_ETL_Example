@@ -20,7 +20,7 @@ CREATE VIEW vCustPurchase AS
 SELECT sf.CustomerID, c.CustomerName, count(sf.CustomerID) as PurchaseFreq, sf.OrderOrigin
 FROM SalesFact sf
 LEFT JOIN Customers c ON sf.CustomerID = c.CustomerID
-GROUP BY sf.CustomerID
+GROUP BY sf.CustomerID, sf.OrderID
 ORDER BY PurchaseFreq DESC;
 
 SELECT * FROM vCustPurchase;

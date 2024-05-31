@@ -79,10 +79,10 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP TRIGGER IF EXISTS tUpdGenderCust;
+DROP TRIGGER IF EXISTS tUpdCustData;
 
 DELIMITER $$
-CREATE TRIGGER tUpdGenderCust 
+CREATE TRIGGER tUpdCustData
 BEFORE INSERT ON Customers
 FOR EACH ROW
 BEGIN
@@ -93,6 +93,11 @@ BEGIN
   ELSEIF lower(new.Gender = 'male') THEN SET new.Gender = 'M';
   ELSEIF lower(new.Gender = 'female') THEN SET new.Gender = 'F';
   ELSE SET new.Gender = '-';
+  END IF;
+  
+  IF SUBSTR(new.CustomerID,1,2) = 'C1' THEN SET new.CustOrigin = 'Nganjuk';
+  ELSEIF LEFT(new.CustomerID,2) = 'C2' THEN	SET new.CustOrigin = 'Gresik';
+  ELSEIF LEFT(new.CustomerID,2) = 'C3' THEN	SET new.CustOrigin = 'Pasuruan';
   END IF;
 END $$
 DELIMITER ;
