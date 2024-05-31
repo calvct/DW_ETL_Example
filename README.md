@@ -64,7 +64,7 @@ Analysis is use CEO for analysis the business. It only created for Metics 3 and 
 1. Click on `Analysis` button, then you will redirect to FormAnalysis form.
 2. Connect OLAP host for transforming the data. Enter the host name, DB name, DB username and password. Click on `CONNECT` button to connect to the host.
 3. After status OLAP is connected, choose the metrics that you want. For viewing the report, click on `Get Report` button.
-4. The result will show in data-grid-view. *For chart only available for Metric 1*
+4. The result will show in data-grid-view. *For chart only available for Metric 3 and 4*
 
 ## Built With
 
