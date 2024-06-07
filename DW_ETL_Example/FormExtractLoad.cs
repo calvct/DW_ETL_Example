@@ -160,9 +160,9 @@ namespace DW_ETL_Example
             try
             {
                 string cmdText;
-                if (tb_name.ToLower() == "orders")
+                if (tb_name.ToLower() == "order_table")
                 {
-                    cmdText = "SELECT OrderID, CustomerID, DATE_FORMAT(OrderDate,'%Y-%m-%d') as OrderDate, TotalAmount, is_warehouse FROM " + tb_name + " WHERE is_warehouse = 0 ORDER BY 1;";
+                    cmdText = "SELECT ORDER_ID, ACCOUNT_ID, ORDER_TIME, TOTAL_HARGA, is_olap FROM " + tb_name + " WHERE is_olap = 0 ORDER BY 1;";
                     myAdapter = new MySqlDataAdapter(cmdText, myConnOLTP);
                     dt = new DataTable();
                     myAdapter.Fill(dt);
@@ -171,7 +171,7 @@ namespace DW_ETL_Example
                 }
                 else
                 {
-                    cmdText = "SELECT * FROM " + tb_name + " WHERE is_warehouse = 0 ORDER BY 1;";
+                    cmdText = "SELECT * FROM " + tb_name + " WHERE is_olap = 0 ORDER BY 1;";
                     myAdapter = new MySqlDataAdapter(cmdText, myConnOLTP);
                     dt = new DataTable();
                     myAdapter.Fill(dt);
@@ -232,19 +232,19 @@ namespace DW_ETL_Example
 
         private void btnTL_Click(object sender, EventArgs e)
         {
-            if (cbDBNameOLTP.Text == "DW_OLTP1") originOLTP = "Nganjuk";
-            else if (cbDBNameOLTP.Text == "DW_OLTP2") originOLTP = "Gresik";
-            else if (cbDBNameOLTP.Text == "DW_OLTP3") originOLTP = "Pasuruan";
+            if (cbDBNameOLTP.Text == "sepatuku_wb") originOLTP = "Wilbert";
+            else if (cbDBNameOLTP.Text == "sepatuku_vicky") originOLTP = "Vicky";
+            else if (cbDBNameOLTP.Text == "sepatuku_mario") originOLTP = "Mario";
 
-            if (cbTable.Text.Equals("Customers"))
+            if (cbTable.Text.ToUpper() == "ACCOUNT")
             {
                 loadCustomers();
             }
-            else if (cbTable.Text.Equals("Orders"))
+            else if (cbTable.Text.ToUpper() == "ORDER_TABLE")
             {
                 loadOrders();
             }
-            else if (cbTable.Text.Equals("OrderDetails"))
+            else if (cbTable.Text.ToUpper() == "DETAIL_ORDER")
             {
                 loadOrderDetails();
             }
@@ -259,12 +259,11 @@ namespace DW_ETL_Example
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO Customers (CustomerID, CustomerName, Gender, Region, CustOrigin) VALUES ('" + 
-                                            dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "','" + 
-                                            dt.Rows[i][3].ToString() + "','" + originOLTP + "')";
+                    myCmdOLAP.CommandText = $"INSERT INTO ACCOUNT (ACCOUNT_ID, USERNAME, PASSWORD, EMAIL,PHONE_NUMBER,ADDRESS,ROLES, origin) VALUES ('{dt.Rows[i][0].ToString()}','{dt.Rows[i][1].ToString()}', '{dt.Rows[i][2].ToString()}','{dt.Rows[i][3].ToString()}','{dt.Rows[i][4].ToString()}', '{dt.Rows[i][5].ToString()}', '{dt.Rows[i][6].ToString()}', '{originOLTP}')";
+                    
                     myCmdOLAP.ExecuteNonQuery();
 
-                    myCmdOLTP.CommandText = "UPDATE Customers SET is_warehouse = 1 WHERE CustomerID='" + dt.Rows[i][0].ToString() + "';";
+                    myCmdOLTP.CommandText = "UPDATE ACCOUNT SET is_olap = 1 WHERE Account_ID='" + dt.Rows[i][0].ToString() + "';";
                     myCmdOLTP.ExecuteNonQuery();
                 }
                 MessageBox.Show("Berhasil LOAD DATA ke DW utk table " + cbTable.Text);
@@ -279,16 +278,37 @@ namespace DW_ETL_Example
         {
             try
             {
+                
                 myCmdOLTP.Connection = myConnOLTP;
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount, OrderOrigin) VALUES ('" +
-                                            dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + 
-                                            dt.Rows[i][3].ToString() + ",'" + originOLTP + "')";
+                    string formattedOrderTime;
+                    if (dt.Rows[i][2] is DateTime)
+                    {
+                        formattedOrderTime = ((DateTime)dt.Rows[i][2]).ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        // Attempt to convert the value to DateTime if it's a string representation
+                        DateTime parsedDate;
+                        if (DateTime.TryParse(dt.Rows[i][2].ToString(), out parsedDate))
+                        {
+                            formattedOrderTime = parsedDate.ToString("yyyy-MM-dd HH:mm:ss");
+                        }
+                        else
+                        {
+                            // Handle potential conversion errors or unexpected data types
+                            throw new Exception("Invalid format for order time: " + dt.Rows[i][2].ToString());
+                        }
+                    }
+                    myCmdOLAP.CommandText = "INSERT INTO ORDER_TABLE (ORDER_ID, ACCOUNT_ID, ORDER_TIME, TOTAL_HARGA, origin) VALUES ('" +
+                          dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "','" + formattedOrderTime + "'," +
+                          dt.Rows[i][3].ToString() + ",'" + originOLTP + "')";
+
                     myCmdOLAP.ExecuteNonQuery();
 
-                    myCmdOLTP.CommandText = "UPDATE Orders SET is_warehouse = 1 WHERE OrderID='" + dt.Rows[i][0].ToString() + "';";
+                    myCmdOLTP.CommandText = "UPDATE Order_table SET is_olap = 1 WHERE Order_ID='" + dt.Rows[i][0].ToString() + "';";
                     myCmdOLTP.ExecuteNonQuery();
 
                 }
@@ -308,12 +328,12 @@ namespace DW_ETL_Example
                 myCmdOLAP.Connection = myConnOLAP;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    myCmdOLAP.CommandText = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity, ProductPrice, Discount) VALUES ('" + 
-                                            dt.Rows[i][1].ToString() + "','" + dt.Rows[i][2].ToString() + "'," + dt.Rows[i][3].ToString() + "," + 
-                                            dt.Rows[i][4].ToString() + "," + dt.Rows[i][5].ToString() + ")";
+                    myCmdOLAP.CommandText = "INSERT INTO DETAIL_ORDER (ORDER_ID, PRODUK_ID, UKURAN, JUMLAH, origin) VALUES ('" + 
+                                            dt.Rows[i][0].ToString() + "','" + dt.Rows[i][1].ToString() + "'," + dt.Rows[i][2].ToString() + "," + 
+                                            dt.Rows[i][3].ToString() + ",'" + originOLTP + "')";
                     myCmdOLAP.ExecuteNonQuery();
 
-                    myCmdOLTP.CommandText = "UPDATE OrderDetails SET is_warehouse = 1 WHERE OrderDetailID='" + dt.Rows[i][0].ToString() + "';";
+                    myCmdOLTP.CommandText = "UPDATE DETAIL_ORDER SET is_olap = 1 WHERE ORDER_ID='" + dt.Rows[i][0].ToString() + "' and PRODUK_ID = '" + dt.Rows[i][1].ToString() + "' and UKURAN = '" + dt.Rows[i][2].ToString()+ "';";
                     myCmdOLTP.ExecuteNonQuery();
                 }
                 MessageBox.Show("Berhasil LOAD DATA ke DW utk table " + cbTable.Text);
@@ -330,6 +350,11 @@ namespace DW_ETL_Example
                 if (myConnOLTP.State == ConnectionState.Open) myConnOLTP.Close();
             if (myConnOLAP != null)
                 if (myConnOLAP.State == ConnectionState.Open) myConnOLAP.Close();
+        }
+
+        private void cbDBNameOLTP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

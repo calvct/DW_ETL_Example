@@ -64,7 +64,7 @@ namespace DW_ETL_Example
             this.label1.Location = new System.Drawing.Point(18, 53);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 25);
+            this.label1.Size = new System.Drawing.Size(142, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "EXTRACT FROM :";
             // 
@@ -73,14 +73,15 @@ namespace DW_ETL_Example
             this.cbDBNameOLTP.FormattingEnabled = true;
             this.cbDBNameOLTP.Items.AddRange(new object[] {
             "[select OLTP]",
-            "DW_OLTP1",
-            "DW_OLTP2",
-            "DW_OLTP3"});
+            "sepatuku_mario",
+            "sepatuku_wb",
+            "sepatuku_vicky"});
             this.cbDBNameOLTP.Location = new System.Drawing.Point(207, 50);
             this.cbDBNameOLTP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbDBNameOLTP.Name = "cbDBNameOLTP";
-            this.cbDBNameOLTP.Size = new System.Drawing.Size(378, 33);
+            this.cbDBNameOLTP.Size = new System.Drawing.Size(378, 28);
             this.cbDBNameOLTP.TabIndex = 1;
+            this.cbDBNameOLTP.SelectedIndexChanged += new System.EventHandler(this.cbDBNameOLTP_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -88,7 +89,7 @@ namespace DW_ETL_Example
             this.label3.Location = new System.Drawing.Point(49, 219);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 25);
+            this.label3.Size = new System.Drawing.Size(118, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "TABLE NAME :";
             // 
@@ -97,13 +98,13 @@ namespace DW_ETL_Example
             this.cbTable.FormattingEnabled = true;
             this.cbTable.Items.AddRange(new object[] {
             "[select Table Name]",
-            "Customers",
-            "Orders",
-            "OrderDetails"});
+            "Account",
+            "Order_Table",
+            "Detail_Order"});
             this.cbTable.Location = new System.Drawing.Point(207, 216);
             this.cbTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbTable.Name = "cbTable";
-            this.cbTable.Size = new System.Drawing.Size(378, 33);
+            this.cbTable.Size = new System.Drawing.Size(378, 28);
             this.cbTable.TabIndex = 5;
             this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectedIndexChanged);
             // 
@@ -123,7 +124,7 @@ namespace DW_ETL_Example
             this.label4.Location = new System.Drawing.Point(55, 94);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 25);
+            this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "DB Username :";
             // 
@@ -133,7 +134,7 @@ namespace DW_ETL_Example
             this.label5.Location = new System.Drawing.Point(59, 130);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 25);
+            this.label5.Size = new System.Drawing.Size(113, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "DB Password :";
             // 
@@ -141,7 +142,7 @@ namespace DW_ETL_Example
             // 
             this.tbUserOLTP.Location = new System.Drawing.Point(207, 91);
             this.tbUserOLTP.Name = "tbUserOLTP";
-            this.tbUserOLTP.Size = new System.Drawing.Size(378, 30);
+            this.tbUserOLTP.Size = new System.Drawing.Size(378, 26);
             this.tbUserOLTP.TabIndex = 9;
             this.tbUserOLTP.Text = "root";
             // 
@@ -149,7 +150,7 @@ namespace DW_ETL_Example
             // 
             this.tbPassOLTP.Location = new System.Drawing.Point(207, 127);
             this.tbPassOLTP.Name = "tbPassOLTP";
-            this.tbPassOLTP.Size = new System.Drawing.Size(378, 30);
+            this.tbPassOLTP.Size = new System.Drawing.Size(378, 26);
             this.tbPassOLTP.TabIndex = 10;
             this.tbPassOLTP.Text = "root";
             // 
@@ -194,7 +195,7 @@ namespace DW_ETL_Example
             this.label6.Location = new System.Drawing.Point(18, 302);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(210, 25);
+            this.label6.Size = new System.Drawing.Size(165, 20);
             this.label6.TabIndex = 15;
             this.label6.Text = "EXTRACTED DATA : ";
             // 
@@ -212,9 +213,9 @@ namespace DW_ETL_Example
             // 
             this.tbHostOLAP.Location = new System.Drawing.Point(994, 53);
             this.tbHostOLAP.Name = "tbHostOLAP";
-            this.tbHostOLAP.Size = new System.Drawing.Size(378, 30);
+            this.tbHostOLAP.Size = new System.Drawing.Size(378, 26);
             this.tbHostOLAP.TabIndex = 37;
-            this.tbHostOLAP.Text = "sub14.sift-uc.id";
+            this.tbHostOLAP.Text = "sub3.sift-uc.id";
             // 
             // label2
             // 
@@ -222,7 +223,7 @@ namespace DW_ETL_Example
             this.label2.Location = new System.Drawing.Point(799, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 25);
+            this.label2.Size = new System.Drawing.Size(144, 20);
             this.label2.TabIndex = 36;
             this.label2.Text = "LOAD TO (HOST) :";
             // 
@@ -230,9 +231,9 @@ namespace DW_ETL_Example
             // 
             this.tbDBNameOLAP.Location = new System.Drawing.Point(994, 89);
             this.tbDBNameOLAP.Name = "tbDBNameOLAP";
-            this.tbDBNameOLAP.Size = new System.Drawing.Size(378, 30);
+            this.tbDBNameOLAP.Size = new System.Drawing.Size(378, 26);
             this.tbDBNameOLAP.TabIndex = 35;
-            this.tbDBNameOLAP.Text = "subsif15_dw_olap";
+            this.tbDBNameOLAP.Text = "subsift4_dwalp";
             // 
             // btnDiscOLAP
             // 
@@ -258,17 +259,17 @@ namespace DW_ETL_Example
             // 
             this.tbPassOLAP.Location = new System.Drawing.Point(994, 161);
             this.tbPassOLAP.Name = "tbPassOLAP";
-            this.tbPassOLAP.Size = new System.Drawing.Size(378, 30);
+            this.tbPassOLAP.Size = new System.Drawing.Size(378, 26);
             this.tbPassOLAP.TabIndex = 32;
-            this.tbPassOLAP.Text = "D2eM1lNrYw{Q";
+            this.tbPassOLAP.Text = "@Wilbert123";
             // 
             // tbUserOLAP
             // 
-            this.tbUserOLAP.Location = new System.Drawing.Point(994, 125);
+            this.tbUserOLAP.Location = new System.Drawing.Point(994, 129);
             this.tbUserOLAP.Name = "tbUserOLAP";
-            this.tbUserOLAP.Size = new System.Drawing.Size(378, 30);
+            this.tbUserOLAP.Size = new System.Drawing.Size(378, 26);
             this.tbUserOLAP.TabIndex = 31;
-            this.tbUserOLAP.Text = "subsif15_dw_olap_user";
+            this.tbUserOLAP.Text = "subsift4_olap";
             // 
             // label7
             // 
@@ -276,7 +277,7 @@ namespace DW_ETL_Example
             this.label7.Location = new System.Drawing.Point(846, 164);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 25);
+            this.label7.Size = new System.Drawing.Size(113, 20);
             this.label7.TabIndex = 30;
             this.label7.Text = "DB Password :";
             // 
@@ -286,7 +287,7 @@ namespace DW_ETL_Example
             this.label8.Location = new System.Drawing.Point(842, 128);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(145, 25);
+            this.label8.Size = new System.Drawing.Size(118, 20);
             this.label8.TabIndex = 29;
             this.label8.Text = "DB Username :";
             // 
@@ -296,7 +297,7 @@ namespace DW_ETL_Example
             this.label9.Location = new System.Drawing.Point(879, 92);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(107, 25);
+            this.label9.Size = new System.Drawing.Size(86, 20);
             this.label9.TabIndex = 28;
             this.label9.Text = "DB Name :";
             // 
@@ -306,7 +307,7 @@ namespace DW_ETL_Example
             this.lblStatOLTP.Location = new System.Drawing.Point(332, 20);
             this.lblStatOLTP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatOLTP.Name = "lblStatOLTP";
-            this.lblStatOLTP.Size = new System.Drawing.Size(138, 25);
+            this.lblStatOLTP.Size = new System.Drawing.Size(109, 20);
             this.lblStatOLTP.TabIndex = 38;
             this.lblStatOLTP.Text = "status OLTP : ";
             this.lblStatOLTP.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -317,14 +318,14 @@ namespace DW_ETL_Example
             this.lblStatOLAP.Location = new System.Drawing.Point(1146, 20);
             this.lblStatOLAP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatOLAP.Name = "lblStatOLAP";
-            this.lblStatOLAP.Size = new System.Drawing.Size(139, 25);
+            this.lblStatOLAP.Size = new System.Drawing.Size(111, 20);
             this.lblStatOLAP.TabIndex = 39;
             this.lblStatOLAP.Text = "status OLAP : ";
             this.lblStatOLAP.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FormExtractLoad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1401, 766);
             this.Controls.Add(this.lblStatOLAP);
