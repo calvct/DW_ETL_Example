@@ -129,6 +129,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Screenshot 2024-06-12 193802.png" />
+    <None Include="Resources\Screenshot 2024-06-12 195603.png" />
+    <None Include="Resources\Screenshot 2024-06-12 200846.png" />
     <Content Include="Resources\SQL\olap.sql" />
     <Content Include="Resources\SQL\oltp-1.sql" />
     <Content Include="Resources\SQL\oltp-2.sql" />

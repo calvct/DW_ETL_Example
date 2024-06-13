@@ -66,7 +66,7 @@ namespace DW_ETL_Example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(17, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(395, 25);
+            this.label1.Size = new System.Drawing.Size(313, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "APPLICATION for ETL from OLTP to OLAP";
             // 
@@ -93,25 +93,27 @@ namespace DW_ETL_Example
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::DW_ETL_Example.Properties.Resources.OLAP_PDM;
+            this.pictureBox2.Image = global::DW_ETL_Example.Properties.Resources.Screenshot_2024_06_12_200846;
             this.pictureBox2.Location = new System.Drawing.Point(479, 262);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(754, 361);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::DW_ETL_Example.Properties.Resources.OLTP_PDM;
+            this.pictureBox1.Image = global::DW_ETL_Example.Properties.Resources.Screenshot_2024_06_12_195603;
             this.pictureBox1.Location = new System.Drawing.Point(22, 262);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(441, 350);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // FormMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 635);
             this.Controls.Add(this.btnAnalysis);

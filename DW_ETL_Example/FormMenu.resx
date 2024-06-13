@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>Key Metrics: 
-1. Daily/Weekly/Monthly Sales: Provides information on total sales over various time periods, helping CEOtrack sales performance over time.
-2. Average Order Value: Shows the average value of orders placed by customers, aiding in planning promotions or special offer packages.
-3. Customer Purchase Frequency: Provides insights into how often customers return to order, helping identify loyal customers and develop loyalty programs.
-4. Best-Selling Products Analysis: Identifies the most frequently sold products, enabling CEO make better stock and promotional decisions.
-5. Best-City for Selling Performances: Provides information on which City (OLTP) sold the highest amount, helping CEO to promote city's manager.</value>
+    <value>Key Metrics:
+1. Most Active Users: Indicates users who make the highest number of purchases, offering insights into customer engagement and loyalty.
+2. Top-Selling Products: Identifies products with the highest sales volume, aiding in inventory management and marketing strategies.
+3. Sales by Category: Provides a breakdown of sales performance across different product categories, helping optimize product offerings and marketing efforts.
+4. Monthly Sales Performance: Tracks sales performance on a monthly basis, facilitating trend analysis and forecasting for revenue growth.
+5. Top-Performing Origin: Highlights the origin with the best sales performance, enabling targeted marketing efforts and resource allocation.</value>
   </data>
 </root>

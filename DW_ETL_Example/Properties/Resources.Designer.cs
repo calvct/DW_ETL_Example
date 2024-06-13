@@ -19,7 +19,7 @@ namespace DW_ETL_Example.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -76,6 +76,36 @@ namespace DW_ETL_Example.Properties {
         internal static System.Drawing.Bitmap OLTP_PDM {
             get {
                 object obj = ResourceManager.GetObject("OLTP-PDM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2024_06_12_193802 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2024-06-12 193802", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2024_06_12_195603 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2024-06-12 195603", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2024_06_12_200846 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2024-06-12 200846", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

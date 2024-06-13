@@ -27,7 +27,6 @@ namespace DW_ETL_Example
         private void FormAnalysis_Load(object sender, EventArgs e)
         {
             cbReport1.SelectedIndex = 3;
-            cbReport2.SelectedIndex = 0;
             disconnectedOLAPComponent();
         }
 
@@ -99,7 +98,7 @@ namespace DW_ETL_Example
         {
             try
             {
-                string cmdText = "CALL pCustPurchaseFilter('" + cbReport1.SelectedIndex + "','" + tbOrigin.Text + "');";
+                string cmdText = "CALL pMAUOrigin('" + cbReport1.Text  + "');";
 
                 myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
                 dt = new DataTable();
@@ -109,20 +108,24 @@ namespace DW_ETL_Example
 
                 chart1.DataSource = dt;
                 chart1.Series[0].Name = "Purchase Frequency";
-                switch (cbReport1.SelectedIndex)
+                switch (cbReport1.Text)
                 {
-                    case 0:
-                        chart1.Series[0].XValueMember = "CustomerName";
+                    case "wilbert":
+                        chart1.Series[0].XValueMember = "USERNAME";
                         chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
-                    case 1:
-                        chart1.Series[0].XValueMember = "CustomerName";
+                    case "mario":
+                        chart1.Series[0].XValueMember = "USERNAME";
                         chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
-                    case 2:
-                        chart1.Series[0].XValueMember = "CustomerName";
+                    case "vicky":
+                        chart1.Series[0].XValueMember = "USERNAME";
                         chart1.Series[0].YValueMembers = "PurchaseFreq";
                         break;
+                    case "all":
+                        chart1.Series[0].XValueMember = "USERNAME";
+                        chart1.Series[0].YValueMembers = "PurchaseFreq";
+                        break ;
                 }
                 chart1.DataBind();
             }
@@ -136,7 +139,7 @@ namespace DW_ETL_Example
         {
             try
             {
-                string cmdText = "CALL pSoldProductsFilter('" + cbReport2.SelectedIndex + "');";
+                string cmdText = "SELECT * FROM vTopSelling;";
 
                 myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
                 dt = new DataTable();
@@ -146,8 +149,80 @@ namespace DW_ETL_Example
 
                 chart1.DataSource = dt;
                 chart1.Series[0].Name = "Total Sold";
-                chart1.Series[0].XValueMember = "ProductName";
-                chart1.Series[0].YValueMembers = "TotalSold";
+                chart1.Series[0].XValueMember = "Nama_produk";
+                chart1.Series[0].YValueMembers = "ProductSales";
+                chart1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cmdText = "SELECT * FROM vSalesByCategory;";
+
+                myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
+                dt = new DataTable();
+                myAdapter.Fill(dt);
+                dgvResult.DataSource = dt;
+                dgvResult.Refresh();
+
+                chart1.DataSource = dt;
+                chart1.Series[0].Name = "Total Sold";
+                chart1.Series[0].XValueMember = "Category";
+                chart1.Series[0].YValueMembers = "TotalSales";
+                chart1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cmdText = "SELECT * FROM vMonthlySales;";
+
+                myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
+                dt = new DataTable();
+                myAdapter.Fill(dt);
+                dgvResult.DataSource = dt;
+                dgvResult.Refresh();
+
+                chart1.DataSource = dt;
+                chart1.Series[0].Name = "Total Sold";
+                chart1.Series[0].XValueMember = "Month";
+                chart1.Series[0].YValueMembers = "TotalSales";
+                chart1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cmdText = "SELECT * FROM vTopOrigin;";
+
+                myAdapter = new MySqlDataAdapter(cmdText, myConnOLAP);
+                dt = new DataTable();
+                myAdapter.Fill(dt);
+                dgvResult.DataSource = dt;
+                dgvResult.Refresh();
+
+                chart1.DataSource = dt;
+                chart1.Series[0].Name = "Total Sold";
+                chart1.Series[0].XValueMember = "orderorigin";
+                chart1.Series[0].YValueMembers = "TotalSales";
                 chart1.DataBind();
             }
             catch (Exception ex)

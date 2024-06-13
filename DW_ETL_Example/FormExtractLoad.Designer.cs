@@ -152,7 +152,6 @@ namespace DW_ETL_Example
             this.tbPassOLTP.Name = "tbPassOLTP";
             this.tbPassOLTP.Size = new System.Drawing.Size(378, 26);
             this.tbPassOLTP.TabIndex = 10;
-            this.tbPassOLTP.Text = "root";
             // 
             // btnConnectOLTP
             // 
@@ -178,6 +177,7 @@ namespace DW_ETL_Example
             // 
             this.dgvExtractedData.AllowUserToAddRows = false;
             this.dgvExtractedData.AllowUserToDeleteRows = false;
+            this.dgvExtractedData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvExtractedData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExtractedData.Location = new System.Drawing.Point(12, 330);
             this.dgvExtractedData.Name = "dgvExtractedData";
